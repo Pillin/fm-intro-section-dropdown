@@ -8,9 +8,9 @@ import CompanyBar from "./CompanyBar";
 import Image from "./Image";
 import { LearnMoreButton } from "./core/Buttons";
 
-const HFlex = styled.section`
+const HFlex = styled(motion.section)`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
@@ -18,15 +18,20 @@ const HFlex = styled.section`
   padding: 16px;
   gap: 24px 80px;
 
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     flex-direction: row;
   }
 `;
-const CFlex = styled.section`
+const CFlex = styled(motion.section)`
   display: flex;
   flex-direction: column;
   gap: 40px 0px;
   max-width: 513px;
+  width: 100%;
+  align-items: center;
+  @media (min-width: 769px) {
+    align-items: flex-start;
+  }
 `;
 
 export default (props: any) => {
@@ -44,7 +49,8 @@ export default (props: any) => {
       <CFlex>
         <Image
           style={{
-            width: "430px"
+            maxWidth: "430px",
+            width: "100%"
           }}
           mobile="image-hero-mobile.png"
           desktop="image-hero-desktop.png"

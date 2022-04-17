@@ -7,21 +7,6 @@
         },
         {
           "id": "codesandbox.browser",
-          "closeable": true,
-          "options": {
-            "url": "/___graphql",
-            "title": "GraphiQL"
-          }
-        },
-        {
-          "id": "codesandbox.browser",
-          "options": {
-            "port": 45249
-          },
-          "closeable": true
-        },
-        {
-          "id": "codesandbox.browser",
           "options": {
             "port": 8000
           },
@@ -43,5 +28,11 @@
         }
       ]
     }
-  ]
+  ],
+  "responsive-preview": {
+    "asdsad": [
+      320,
+      675
+    ]
+  }
 }

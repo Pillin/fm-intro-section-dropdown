@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import {
   CalendarIcon,
   Logo,
   TodoIcon,
   RemindersIcon,
-  PlanningIcon
+  PlanningIcon,
+  MenuIcon,
+  CloseMenuIcon
 } from "./core/Icons";
 import Dropdown from "./Dropdown";
 import { Link, Login, Register } from "./core/Buttons";
@@ -27,9 +30,10 @@ const HFlex = styled.section<{
 `;
 
 const Menu = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
     <>
-      <Logo width="120px" />
+      {!isMobile && <Logo width="120px" />}
       <Dropdown
         direction="right"
         label="Features"
@@ -55,11 +59,75 @@ const Menu = () => {
   );
 };
 
+const MobileContainer = styled(motion.section)`
+  position: absolute;
+  z-index: 200;
+  right: 0px;
+  top: 0px;
+  background: rgb(250, 250, 250);
+  min-height: 100vh;
+  height: 100%;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+
+  button {
+    padding: 16px 0px;
+  }
+  > svg {
+    align-self: flex-end;
+  }
+`;
+
+const AuthenticationContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    gap: 0px 24px;
+    align-items: center;
+  }
+`;
+
 const AuthenticationBar = () => {
   return (
-    <>
+    <AuthenticationContainer>
       <Login onClick={() => {}} />
       <Register onClick={() => {}} />
+    </AuthenticationContainer>
+  );
+};
+const BlackOut = styled(motion.section)`
+  position: absolute;
+  width: 100vw;
+  min-height: 100vh;
+  height: 200%;
+  top: 0px;
+  left: 0px;
+  opacity: 0.75;
+  background-color: black;
+  z-index: 10;
+`;
+
+const MobileMenu = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <>
+      {isOpen && (
+        <>
+          <BlackOut onClick={() => setIsOpen(false)}></BlackOut>
+          <MobileContainer>
+            <CloseMenuIcon onClick={() => setIsOpen(!isOpen)} />
+            <Menu />
+            <AuthenticationBar />
+          </MobileContainer>
+        </>
+      )}
+
+      {!isOpen && <MenuIcon onClick={() => setIsOpen(!isOpen)} />}
     </>
   );
 };
@@ -80,7 +148,7 @@ const Navbar = () => {
       </HFlex>
       <HFlex gap="0px 24px">
         {isDesktop && <AuthenticationBar />}
-        {isMobile && <Logo />}
+        {isMobile && <MobileMenu />}
       </HFlex>
     </HFlex>
   );

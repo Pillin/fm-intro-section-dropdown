@@ -79,15 +79,17 @@ const LinkVariant = {
     fontWeight: "500",
     fontSize: "14px",
     lineHeight: "16px",
-    display: "flex"
+    display: "flex",
+    alignItems: "center",
+    gap: "0px 8px"
   },
   animate: {
-    color: "black",
+    color: "#686868",
     backgroundColor: "#FAFAFA"
   },
   hover: {
     backgroundColor: "#FAFAFA",
-    color: "#black",
+    color: "#686868",
     borderColor: "#FAFAFA"
   },
   tap: {

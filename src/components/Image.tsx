@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 const Picture = styled(motion.picture)`
-  width: 100%;
+  width: fit-content;
 
   > img {
     width: 100%;

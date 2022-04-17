@@ -13,7 +13,12 @@ const Container = styled(motion.section)`
   width: 100%;
   display: flex;
   padding: 80px 0px 0px 0px;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px 16px;
+  @media (min-width: 769px) {
+    justify-content: space-around;
+  }
 `;
 
 const containerVariant = {
