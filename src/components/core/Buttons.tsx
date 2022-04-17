@@ -118,20 +118,18 @@ export const LearnMoreButton = Button({
   variants: ButtonVariants
 })({ label: "Learn More" });
 
-export const Link = (props: { onClick: Function; children: ReactNode }) => {
-  return (
-    <motion.button
-      initial="initial"
-      animate="animate"
-      variants={LinkVariant}
-      whileHover="hover"
-      whileTap="tap"
-      onClick={(e) => props.onClick(e)}
-    >
-      {props.children}
-    </motion.button>
-  );
-};
+export const Link = (props: { onClick: Function; children: ReactNode }) => (
+  <motion.button
+    initial="initial"
+    animate="animate"
+    variants={LinkVariant}
+    whileHover="hover"
+    whileTap="tap"
+    onClick={(e) => props.onClick(e)}
+  >
+    {props.children}
+  </motion.button>
+);
 
 export const Register = Button({
   variants: RegisterButtonVariants

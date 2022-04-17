@@ -2,7 +2,7 @@ import * as React from "react";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Main = styled(motion.main)`
   display: flex;
@@ -15,8 +15,10 @@ const Main = styled(motion.main)`
 const IndexPage = () => {
   return (
     <Main>
-      <Navbar />
-      <Card />
+      <AnimatePresence>
+        <Navbar />
+        <Card />
+      </AnimatePresence>
     </Main>
   );
 };

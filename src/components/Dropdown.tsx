@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { Link } from "./core/Buttons";
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUp } from "./core/Icons";
 
 interface DropdownList {
@@ -48,13 +48,34 @@ const ModalSection = styled(motion.section)<{ right: string }>`
   }
 `;
 
-const Container = styled.section`
+const Container = styled(motion.section)`
   display: flex;
   flex-direction: column;
   position: relative;
   @media (min-width: 769px) {
   }
 `;
+
+const menuOptionVariant = {
+  hidden: { opacity: 0 },
+  show: (custom: number) => ({
+    opacity: 1,
+    transition: {
+      delay: custom * 0.15
+    }
+  }),
+  hover: {
+    scale: 1.05,
+    transition: { duration: 0.002 }
+  },
+  selected: {
+    opacity: 1,
+    transition: { duration: 0.002 }
+  },
+  tap: {
+    scale: 1.1
+  }
+};
 
 const Dropdown = (props: {
   label: string;
@@ -63,23 +84,40 @@ const Dropdown = (props: {
 }) => {
   const [open, setOpen] = React.useState(false);
   return (
-    <Container>
+    <Container
+      initial={{ left: "-200px", opacity: 0 }}
+      animate={{ left: "0px", opacity: 1 }}
+    >
       <Link onClick={() => setOpen(!open)}>
         {props.label}
         <span> </span>
         {!open ? <ArrowDown /> : <ArrowUp />}
       </Link>
       {open && (
-        <ModalSection right={props.direction === "right" ? "0px" : ""}>
-          {props.list.map(({ name, icon, onClick }, index) => (
-            <Link
-              key={`${props.label}-list-${index}`}
-              onClick={(e: any) => onClick(e)}
-            >
-              {icon && <div>{icon}</div>}
-              <div>{name}</div>
-            </Link>
-          ))}
+        <ModalSection
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 0.5 } }}
+          exit={{ opacity: 0 }}
+          right={props.direction === "right" ? "0px" : ""}
+        >
+          <AnimatePresence>
+            {props.list.map(({ name, icon, onClick }, index) => (
+              <Link
+                whileHover="hover"
+                whileTap="tap"
+                variants={menuOptionVariant}
+                initial="hidden"
+                animate="show"
+                exit={{ opacity: 0 }}
+                custom={index}
+                key={`${props.label}-list-${index}`}
+                onClick={(e: any) => onClick(e)}
+              >
+                {icon && <div>{icon}</div>}
+                <div>{name}</div>
+              </Link>
+            ))}
+          </AnimatePresence>
         </ModalSection>
       )}
     </Container>

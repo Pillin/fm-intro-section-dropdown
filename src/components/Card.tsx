@@ -34,12 +34,39 @@ const CFlex = styled(motion.section)`
   }
 `;
 
+const containerVariant = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 1
+    }
+  }
+};
 export default (props: any) => {
   return (
     <HFlex>
-      <CFlex>
-        <H1>Make remote work</H1>
-        <P>
+      <CFlex variants={containerVariant}>
+        <H1
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 1.5 } }}
+          whileHover={{
+            color: "black",
+            scale: 1.01,
+            transition: { duration: 1 }
+          }}
+        >
+          Make remote work
+        </H1>
+        <P
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, transition: { duration: 2 } }}
+          whileHover={{
+            color: "black",
+            scale: 1.01,
+            transition: { duration: 1 }
+          }}
+        >
           Get your team in sync, no matter your location. Streamline processes,
           create team rituals, and watch productivity soar.
         </P>

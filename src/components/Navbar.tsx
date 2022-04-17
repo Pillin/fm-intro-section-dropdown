@@ -53,8 +53,20 @@ const Menu = () => {
           { name: "Blog", onClick: () => {} }
         ]}
       />
-      <Link onClick={() => {}}>Careers</Link>
-      <Link onClick={() => {}}>About</Link>
+      <Link
+        initial={{ left: "-200px", opacity: 0 }}
+        animate={{ left: "0px", opacity: 1 }}
+        onClick={() => {}}
+      >
+        Careers
+      </Link>
+      <Link
+        initial={{ left: "-200px", opacity: 0 }}
+        animate={{ left: "0px", opacity: 1 }}
+        onClick={() => {}}
+      >
+        About
+      </Link>
     </>
   );
 };
