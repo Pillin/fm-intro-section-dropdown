@@ -79,8 +79,8 @@ export default (props: any) => {
             maxWidth: "430px",
             width: "100%"
           }}
-          mobile="image-hero-mobile.png"
-          desktop="image-hero-desktop.png"
+          mobile="./image-hero-mobile.png"
+          desktop="./image-hero-desktop.png"
         />
       </CFlex>
     </HFlex>
